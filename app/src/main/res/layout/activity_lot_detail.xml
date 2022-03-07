@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    tools:context=".LotDetailActivity">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="350dp">
+
+            <LinearLayout
+                android:id="@+id/sl"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.afdhal_fa.imageslider.ImageSlider
+                    android:id="@+id/imageSlide"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:iss_auto_cycle="true"
+                    app:iss_delay="0"
+                    app:iss_image_scaleType="centerCrop"
+                    app:iss_period="1000">
+
+                </com.afdhal_fa.imageslider.ImageSlider>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/detail_lot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/btn_background"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_lot_please"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:text="Joy nomi" />
+
+                    <TextView
+                        android:id="@+id/tv_lot_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:background="@drawable/no_item_style"
+                        android:text="№ 1364193"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/bg_color" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Zaklad Summa" />
+
+                        <TextView
+                            android:id="@+id/tv_lot_coast"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:text="500000 UZS"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Boshlang'ich narxi" />
+
+                        <TextView
+                            android:id="@+id/tv_lot_coast_starter"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:text="500000 UZS"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/auksion"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/auksion_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1.7"
+                android:background="@drawable/detail_tv_background"
+                android:drawableStart="@drawable/deatil_check"
+                android:text="Auksion"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/auksion_down"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="2.2"
+                android:background="@drawable/detail_tv_background"
+                android:drawableEnd="@drawable/deail_south"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/auksion_person"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="2.1"
+                android:background="@drawable/detail_tv_background"
+                android:drawableStart="@drawable/person_outline"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/auksion_favorit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="2.1"
+                android:background="@drawable/detail_tv_background"
+                android:drawableStart="@drawable/ic_baseline_favorite_border_24"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/auksion_eye"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1.8"
+                android:background="@drawable/detail_tv_background"
+                android:drawableStart="@drawable/ic_baseline_remove_red_eye_24"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16sdp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/auksion_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/detail_tv_background"
+            android:drawableStart="@drawable/ic_baseline_book_24"
+            android:text="Traktor"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="16dp"
+            android:background="#6E6A6A" />
+
+        <LinearLayout
+            android:id="@+id/deadline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/btn_background"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Arizalar qabul qilishning yakunlanishi"
+                android:textAlignment="center" />
+
+            <LinearLayout
+                android:id="@+id/time_containers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Kun"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/timer_day"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/time_background"
+                        android:text="06"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.1"
+                    android:orientation="vertical"
+                    android:paddingTop="22dp">
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/time_background" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/time_background" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Soat"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/timer_hour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/time_background"
+                        android:text="06"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.1"
+                    android:orientation="vertical"
+                    android:paddingTop="22dp">
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/time_background" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/time_background" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Minut"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/timer_minute"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/time_background"
+                        android:text="06"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.1"
+                    android:orientation="vertical"
+                    android:paddingTop="22dp">
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/time_background" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/time_background" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sekund"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/timer_seconds"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/time_background"
+                        android:text="06"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/lot_deadline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Oxirgi sana 10.03.2022 09:00"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/time_auksion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/deadline"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/btn_background"
+            android:orientation="vertical">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Auksion utkazish vaqti" />
+
+
+            <TextView
+                android:id="@+id/time_auksion_sasda"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_baseline_access_time_24"
+                android:gravity="center"
+                android:text="Auksion 10.03.2022 luni soat 10:00 dan 18:00 gacha"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/location_auksion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time_auksion"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/btn_background"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Manzil" />
+
+
+            <TextView
+                android:id="@+id/location_auksion_sasda"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_baseline_location_on_24"
+                android:gravity="center"
+                android:text="Auksion 10.03.2022 luni soat 10:00 dan 18:00 gacha"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/lot_line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/location_auksion"
+            android:layout_margin="16dp"
+            android:background="#6E6A6A" />
+
+        <LinearLayout
+            android:id="@+id/mol_mulk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lot_line2"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mol_mul_item1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_background"
+                android:gravity="center"
+                android:text="Mulk malumotlari"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                tools:ignore="RtlCompat" />
+
+            <LinearLayout
+                android:id="@+id/molmulk_hidden"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="Mol mulk xo'kjalik saqlash joyi"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_700" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Viloyat" />
+
+                <TextView
+                    android:id="@+id/tv_mol_mul_vil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Viloyat"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tuman" />
+
+                <TextView
+                    android:id="@+id/tv_mol_mul_tuman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Tuman"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Manzil" />
+
+                <TextView
+                    android:id="@+id/tv_mol_mul_manzil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Manzil"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="Muddatni oldindan ko'rish jadvali"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_700" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1-kun" />
+
+                <TextView
+                    android:id="@+id/tv_mol_mul_1kun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="01.03.2022. dsfsfs"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2-kun" />
+
+                <TextView
+                    android:id="@+id/tv_mol_mul_2kun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="01.02.0555 sds"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3-kun" />
+
+                <TextView
+                    android:id="@+id/tv_mol_mul_3kun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="01.03.2022.sadasdas"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ijro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ikro_item_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_background"
+                android:text="Ijro xukumati malumotlari"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/ijro_hidden"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sotuvchi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/sotuvchi_item1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_background"
+                android:gravity="center"
+                android:text="Sotuvchi ma'lumotlari"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                tools:ignore="RtlCompat" />
+
+            <LinearLayout
+                android:id="@+id/sotuvchi_hidden"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mulkdor turi" />
+
+                <TextView
+                    android:id="@+id/tv_mulkdor_turi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Yuridik shaxs"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sotuchi" />
+
+                <TextView
+                    android:id="@+id/sotuvchi_xaqida"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Tuman"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Viloyat" />
+
+                <TextView
+                    android:id="@+id/sotuvchi_manzil_vil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="VIL"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tuman" />
+
+                <TextView
+                    android:id="@+id/sotuvchi_manzil_tuman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Tuman"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Manzil" />
+
+                <TextView
+                    android:id="@+id/sotuvchi_manzil_manzil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Manzil"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Elektron pochta" />
+
+                <TextView
+                    android:id="@+id/sotuvchi_elektron_manzil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Manzil"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Telefon" />
+
+                <TextView
+                    android:id="@+id/sotuvchi_tele"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Manzil"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lot_malumotlari"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lot_malumotlari_item_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_background"
+                android:text="Ijro xukumati malumotlari"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/lot_malumotlari_hidden"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

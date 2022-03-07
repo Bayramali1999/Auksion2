@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/android/Auksion2/app/src/main/res/drawable/background.xml" value="0.248" />
+        <entry key="..\:/android/Auksion2/app/src/main/res/drawable/btn_background.xml" value="0.175" />
+        <entry key="..\:/android/Auksion2/app/src/main/res/drawable/btn_selected_background.xml" value="0.248" />
+        <entry key="..\:/android/Auksion2/app/src/main/res/drawable/detail_tv_background.xml" value="0.2615" />
+        <entry key="..\:/android/Auksion2/app/src/main/res/drawable/no_item_style.xml" value="0.175" />
+        <entry key="..\:/android/Auksion2/app/src/main/res/drawable/time_background.xml" value="0.2615" />
+        <entry key="..\:/android/Auksion2/app/src/main/res/layout/activity_lot_detail.xml" value="0.22" />
+        <entry key="..\:/android/Auksion2/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/android/Auksion2/app/src/main/res/layout/item_view.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
