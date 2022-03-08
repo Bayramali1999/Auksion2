@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat
 
 class LotDetailActivity : AppCompatActivity() {
 
-    //    private var expandable = false
+    private var expandable = true
     private val vm: SharedViewModel by lazy {
         ViewModelProvider(this)[SharedViewModel::class.java]
     }
@@ -68,6 +68,7 @@ class LotDetailActivity : AppCompatActivity() {
 
                     sotuvchi_xaqida.text = lotbean1.user!!.name
                     val sotuvchiAdr = lotbean1.user.full_address!!.split(", ")
+
                     sotuvchi_manzil_vil.text = sotuvchiAdr[0]
                     sotuvchi_manzil_tuman.text = sotuvchiAdr[1]
                     sotuvchi_manzil_manzil.text = sotuvchiAdr[2]
@@ -78,23 +79,26 @@ class LotDetailActivity : AppCompatActivity() {
 
                     mol_mul_item1.setOnClickListener {
                         checkViewExpandable(1)
+                        expandable = !expandable
                     }
                     ijro.setOnClickListener {
                         checkViewExpandable(2)
+                        expandable = !expandable
                     }
 
                     sotuvchi.setOnClickListener {
                         checkViewExpandable(3)
+                        expandable = !expandable
                     }
 
                     lot_malumotlari.setOnClickListener {
                         checkViewExpandable(4)
+                        expandable = !expandable
                     }
 
                 }
             }
         }
-
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -115,30 +119,32 @@ class LotDetailActivity : AppCompatActivity() {
         lot_malumotlari_item_1.setTextColor(resources.getColor(R.color.black))
         lot_malumotlari_hidden.visibility = View.GONE
 
-        when (i) {
-            1 -> {
-                mol_mul_item1.background = getDrawable(R.drawable.selected_background)
-                mol_mul_item1.setTextColor(resources.getColor(R.color.white))
-                molmulk_hidden.visibility = View.VISIBLE
+        if (expandable) {
+            when (i) {
+                1 -> {
+                    mol_mul_item1.background = getDrawable(R.drawable.selected_background)
+                    mol_mul_item1.setTextColor(resources.getColor(R.color.white))
+                    molmulk_hidden.visibility = View.VISIBLE
 
-            }
-            2 -> {
-                ikro_item_1.background = getDrawable(R.drawable.selected_background)
-                ikro_item_1.setTextColor(resources.getColor(R.color.white))
-                ijro_hidden.visibility = View.VISIBLE
+                }
+                2 -> {
+                    ikro_item_1.background = getDrawable(R.drawable.selected_background)
+                    ikro_item_1.setTextColor(resources.getColor(R.color.white))
+                    ijro_hidden.visibility = View.VISIBLE
 
-            }
-            3 -> {
-                sotuvchi_item1.background = getDrawable(R.drawable.selected_background)
-                sotuvchi_item1.setTextColor(resources.getColor(R.color.white))
-                sotuvchi_hidden.visibility = View.VISIBLE
+                }
+                3 -> {
+                    sotuvchi_item1.background = getDrawable(R.drawable.selected_background)
+                    sotuvchi_item1.setTextColor(resources.getColor(R.color.white))
+                    sotuvchi_hidden.visibility = View.VISIBLE
 
-            }
-            4 -> {
+                }
+                4 -> {
 
-                lot_malumotlari_item_1.background = getDrawable(R.drawable.selected_background)
-                lot_malumotlari_item_1.setTextColor(resources.getColor(R.color.white))
-                lot_malumotlari_hidden.visibility = View.VISIBLE
+                    lot_malumotlari_item_1.background = getDrawable(R.drawable.selected_background)
+                    lot_malumotlari_item_1.setTextColor(resources.getColor(R.color.white))
+                    lot_malumotlari_hidden.visibility = View.VISIBLE
+                }
             }
         }
     }
