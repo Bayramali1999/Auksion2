@@ -1,4 +1,4 @@
-package com.example.auksion2.adapter
+package com.example.auksion2.widget
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

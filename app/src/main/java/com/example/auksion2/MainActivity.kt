@@ -6,7 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
-import com.example.auksion2.adapter.LotsAdapter
+import com.example.auksion2.widget.LotsAdapter
 import com.example.auksion2.data.RequestLotsBody
 import com.example.auksion2.data.ShortLotBeans
 import com.example.auksion2.listener.LotItemClickListener
@@ -31,6 +31,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun ini() {
+        btnSortByField.setOnClickListener {
+            val intent = Intent(this, FilterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         val listener = object : LotItemClickListener {
             override fun itemClicked(beans: ShortLotBeans) {
                 val intent = Intent(this@MainActivity, LotDetailActivity::class.java)

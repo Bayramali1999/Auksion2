@@ -449,7 +449,6 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 tools:ignore="RtlCompat" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -466,7 +465,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Manzil" />
-
 
             <TextView
                 android:id="@+id/location_auksion_sasda"
@@ -775,7 +773,6 @@
                     android:text="Manzil"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
-
             </LinearLayout>
         </LinearLayout>
 
@@ -801,8 +798,6 @@
                 android:background="@drawable/background"
                 android:orientation="vertical"
                 android:visibility="gone">
-
-
             </LinearLayout>
         </LinearLayout>
 
