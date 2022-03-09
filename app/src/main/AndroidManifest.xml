@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Auksion2">
         <activity
+            android:name=".FilterActivity"
+            android:exported="false" />
+        <activity
             android:name=".LotDetailActivity"
             android:exported="false" />
         <activity
