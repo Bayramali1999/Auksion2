@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.auksion2.data.RequestLotsBody
 import com.example.auksion2.data.ResponseLotsBody
+import com.example.auksion2.data.filter.FilterResponse
 import com.example.auksion2.data.lot.LotBean
 import com.example.auksion2.data.lot.PostDetailReq
 import kotlinx.coroutines.Dispatchers
@@ -14,10 +15,14 @@ import kotlinx.coroutines.launch
 class SharedViewModel : ViewModel() {
     private val reopsitory = SharedRepository()
     private val _getLotsByLiveData = MutableLiveData<ResponseLotsBody?>()
+    private val _getFilterByLiveData = MutableLiveData<FilterResponse?>()
+
     private val _getLotsDetailByLiveData = MutableLiveData<LotBean?>()
 
     val getLotsByLiveData: LiveData<ResponseLotsBody?> = _getLotsByLiveData
     val getLotDetailByLiveData: LiveData<LotBean?> = _getLotsDetailByLiveData
+    val filterResponse: LiveData<FilterResponse?> = _getFilterByLiveData
+
 
     fun refreshData(body: RequestLotsBody) {
         viewModelScope.launch(Dispatchers.Main) {
@@ -30,6 +35,13 @@ class SharedViewModel : ViewModel() {
         viewModelScope.launch {
             val res = reopsitory.getLotDetail(body)
             _getLotsDetailByLiveData.postValue(res)
+        }
+    }
+
+    fun loadFilterDetail(body: PostDetailReq) {
+        viewModelScope.launch {
+            val res = reopsitory.getFilterDetail(body)
+            _getFilterByLiveData.postValue(res)
         }
     }
 

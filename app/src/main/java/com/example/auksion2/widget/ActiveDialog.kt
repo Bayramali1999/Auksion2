@@ -28,10 +28,17 @@ class ActiveDialog : DialogFragment() {
                 .setSingleChoiceItems(selectionArray, 0) { _, item ->
                     ids = item
                 }
-                .setPositiveButton("Ok") { listener, id ->
+                .setPositiveButton("Ok") { dialog, id ->
                     this.listener.itemSelected(ids)
                 }
-                .setNegativeButton("Bekor qilish") { listener, id -> }
+                .setSingleChoiceItems(selectionArray, 0) { _, item -> ids = item }
+                .setPositiveButton("Ok") { d, id ->
+                    listener.itemSelected(ids)
+                    d.dismiss()
+                }
+                .setNegativeButton("Bekor qilish") { d, id ->
+                    d.dismiss()
+                }
                 .create()
 
             dialog.create()

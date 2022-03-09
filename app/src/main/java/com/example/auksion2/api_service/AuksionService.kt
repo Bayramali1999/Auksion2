@@ -2,6 +2,7 @@ package com.example.auksion2.api_service
 
 import com.example.auksion2.data.RequestLotsBody
 import com.example.auksion2.data.ResponseLotsBody
+import com.example.auksion2.data.filter.FilterResponse
 import com.example.auksion2.data.lot.LotBean
 import com.example.auksion2.data.lot.PostDetailReq
 import retrofit2.Response
@@ -16,5 +17,8 @@ interface AuksionService {
 
     @HTTP(path = "api/v1/mobile", hasBody = true, method = "POST")
     suspend fun getDetails(@Body ew: PostDetailReq?): Response<LotBean>
+
+    @HTTP(path = "api/v1/mobile", hasBody = true, method = "POST")
+    suspend fun getFilterDetails(@Body ew: PostDetailReq?): Response<FilterResponse>
 
 }

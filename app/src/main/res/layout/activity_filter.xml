@@ -65,7 +65,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/btn_background"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
-            android:text="Davlat aktivlari" />
+            android:text="Mol mulk guruxlari" />
 
         <TextView
             android:id="@+id/spinner_type"

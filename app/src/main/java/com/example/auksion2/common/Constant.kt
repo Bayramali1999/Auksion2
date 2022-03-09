@@ -17,7 +17,7 @@ object Constant {
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
-    val auctionService: AuksionService by lazy {
+    private val auctionService: AuksionService by lazy {
         retrofit.create(AuksionService::class.java)
     }
 
