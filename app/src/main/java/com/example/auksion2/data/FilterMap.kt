@@ -1,20 +1,49 @@
 package com.example.auksion2.data
 
+import android.os.Parcel
+import android.os.Parcelable
+
 data class FilterMap(
-     val lot_number: String? = null,
-     val confiscant_groups_id: Int? = null,
-     val confiscant_categories_id: Int? = null,
-     val regions_id: Int? = null,
-     val areas_id: Int? = null,
-     val orderby_: String? = null,
-     val order_type: String? = null,
-    )
+    var lot_number: String? = null,
+    var confiscant_groups_id: Int? = null,
+    var confiscant_categories_id: Int? = null,
+    var regions_id: Int? = null,
+    var areas_id: Int? = null,
+    var orderby_: String? = null,
+    var order_type: String? = null,
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readString(),
+        parcel.readString()
+    ) {
+    }
 
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(lot_number)
+        parcel.writeValue(confiscant_groups_id)
+        parcel.writeValue(confiscant_categories_id)
+        parcel.writeValue(regions_id)
+        parcel.writeValue(areas_id)
+        parcel.writeString(orderby_)
+        parcel.writeString(order_type)
+    }
 
-//    "lot_nuber":"1268721",
-//    "confiscant_groups_id":2,
-//    "confiscant_categories_id":7,
-//    "regions_id":8,
-////    "areas_id":111
-//"orderby_": "start_time",
-//"order_type": "0"
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<FilterMap> {
+        override fun createFromParcel(parcel: Parcel): FilterMap {
+            return FilterMap(parcel)
+        }
+
+        override fun newArray(size: Int): Array<FilterMap?> {
+            return arrayOfNulls(size)
+        }
+    }
+}

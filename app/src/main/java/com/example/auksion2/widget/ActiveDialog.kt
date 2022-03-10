@@ -1,49 +1,52 @@
 package com.example.auksion2.widget
 
+import android.app.Dialog
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
+import com.example.auksion2.R
 import com.example.auksion2.listener.OnDialogItemSelected
 
-class ActiveDialog : DialogFragment() {
-    private lateinit var title: String
-    private var selectionArray = arrayOf<String>()
-    private lateinit var listener: OnDialogItemSelected
-    private var ids: Int = 0
+class ActiveDialog : androidx.fragment.app.DialogFragment() {
 
-    fun getData(title: String, list: Array<String>, listener: OnDialogItemSelected) {
+    private lateinit var title: String
+    private lateinit var selectionArray: Array<String?>
+    private lateinit var listener: OnDialogItemSelected
+    private var ids: Int = -1
+    private var checkedItem: Int = -1
+
+    fun getData(
+        title: String,
+        list: Array<String?>,
+        listener: OnDialogItemSelected
+    ) {
         this.title = title
         selectionArray = list
         this.listener = listener
+        this.checkedItem = checkedItem
     }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val activity = activity
         if (activity != null) {
-            val dialog = AlertDialog.Builder(activity)
+            val dialog = AlertDialog.Builder(activity, R.style.MyAlertDialogStyle)
 
             dialog.setTitle(title)
-                .setSingleChoiceItems(selectionArray, 0) { _, item ->
-                    ids = item
+                .setSingleChoiceItems(selectionArray, 0) { di, item ->
+                    this.ids = item
+                    this.listener.itemSelected(item)
                 }
-                .setPositiveButton("Ok") { dialog, id ->
-                    this.listener.itemSelected(ids)
+                .setPositiveButton("Ok") { di, _ ->
+                    Toast.makeText(getActivity(), "item$ids", Toast.LENGTH_LONG).show()
+                    di.dismiss()
                 }
-                .setSingleChoiceItems(selectionArray, 0) { _, item -> ids = item }
-                .setPositiveButton("Ok") { d, id ->
-                    listener.itemSelected(ids)
-                    d.dismiss()
+                .setNegativeButton("Bekor qilish") { di, id ->
+                    di.dismiss()
                 }
-                .setNegativeButton("Bekor qilish") { d, id ->
-                    d.dismiss()
-                }
-                .create()
 
-            dialog.create()
+            return dialog.create()
         }
+        return super.onCreateDialog(savedInstanceState)
     }
-
 }
 
