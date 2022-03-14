@@ -18,15 +18,13 @@ class FilterActivity : AppCompatActivity() {
     private val vm by lazy { ViewModelProvider(this)[SharedViewModel::class.java] }
     private val dialog = ActiveDialog()
     private lateinit var filterResponse: FilterResponse
-    private var regionId = -1
-    private var groupId = -1
-    private val filterMap = FilterMap()
+    private var filterMap: FilterMap? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
-
+        filterMap = FilterMap()
         val body = PostDetailReq(7, "1.3.7", "uz")
         vm.loadFilterDetail(body)
         vm.filterResponse.observe(this) {
@@ -35,23 +33,33 @@ class FilterActivity : AppCompatActivity() {
             }
         }
         bindView()
+
     }
 
     private fun bindView() {
         back_arrow.setOnClickListener {
-            val intent = Intent(this@FilterActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            onBackPressed()
         }
 
         btn_search_item.setOnClickListener {
             if (!TextUtils.isEmpty(search_by_id.text)) {
-                filterMap.lot_number = search_by_id.text.toString()
+                filterMap!!.lot_number = search_by_id.text.toString()
             }
             val intent = Intent(this@FilterActivity, MainActivity::class.java)
             intent.putExtra("filter_map", filterMap)
             startActivity(intent)
             finish()
+        }
+
+        btn_clear.setOnClickListener {
+            filterMap = null
+            spinner_actives.text = "Mol mulk guruxlari"
+            spinner_type.text = "Mulk toifasi"
+            spinner_type.isEnabled = false
+            spinner_province.text = "Viloyat"
+            spinner_area.text = "Tuman"
+            spinner_area.isEnabled = false
+            search_by_id.setText("")
         }
 
     }
@@ -65,11 +73,12 @@ class FilterActivity : AppCompatActivity() {
             val groups = filterResponse.groups
             val listener = object : OnDialogItemSelected {
                 override fun itemSelected(id: Int) {
+                    var groupId = -1
                     if (id != -1) {
                         groupId = groups[id].id!!
                         spinner_actives.text = groups[id].name
                         spinner_type.isEnabled = true
-                        filterMap.confiscant_groups_id = groupId
+                        filterMap!!.confiscant_groups_id = groupId
                     }
                 }
             }
@@ -84,13 +93,13 @@ class FilterActivity : AppCompatActivity() {
                 override fun itemSelected(id: Int) {
                     if (id != -1) {
                         spinner_type.text = list[id].name
-//  todo         xato          filterMap.confiscant_categories_id = categories[id].id
+                        filterMap!!.confiscant_categories_id = list[id].id
                     }
                 }
             }
-            if (groupId != -1) {
+            if (this.filterMap!!.confiscant_groups_id != -1) {
                 categories.forEach {
-                    if (it.confiscant_groups_id == groupId) {
+                    if (it.confiscant_groups_id == filterMap!!.confiscant_groups_id) {
                         list.add(it)
                     }
                 }
@@ -106,14 +115,13 @@ class FilterActivity : AppCompatActivity() {
                 override fun itemSelected(id: Int) {
                     if (id != -1) {
                         spinner_area.text = list[id].name
-//             todo           filterMap.areas_id = list = id
-
+                        filterMap!!.areas_id = list[id].id
                     }
                 }
             }
-            if (regionId != -1) {
+            if (filterMap!!.regions_id != -1) {
                 areas.forEach {
-                    if (it.regions_id == regionId) {
+                    if (it.regions_id == filterMap!!.regions_id) {
                         list.add(it)
                     }
                 }
@@ -125,11 +133,12 @@ class FilterActivity : AppCompatActivity() {
             val regions = filterResponse.regions
             val listener = object : OnDialogItemSelected {
                 override fun itemSelected(id: Int) {
+                    var regionId = -1
                     if (id != -1) {
                         regionId = id + 1
                         spinner_province.text = regions[id].name
                         spinner_area.isEnabled = true
-                        filterMap.regions_id = regionId
+                        filterMap!!.regions_id = regionId
                     }
                 }
             }
@@ -143,7 +152,7 @@ class FilterActivity : AppCompatActivity() {
         listener: OnDialogItemSelected
     ) {
         if (this::filterResponse.isInitialized) {
-            val regions = arrayOfNulls<String>(list!!.size)
+            val regions = Array<String>(list!!.size) { i -> "" }
             for (i in 0 until list.size) {
                 val it = list[i].name
                 regions[i] = it + ""

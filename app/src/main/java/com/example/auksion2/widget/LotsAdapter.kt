@@ -35,26 +35,31 @@ class LotsAdapter(
     }
 
 
-    class VH(private val itemView: View, private val listener: LotItemClickListener) :
+    class VH(itemView: View, private val listener: LotItemClickListener) :
         RecyclerView.ViewHolder(itemView) {
 
         @SuppressLint("SetTextI18n")
         fun onBind(shortLotBeans: ShortLotBeans) {
             val imageUrl = getImageUrl(shortLotBeans.file_hash)
-            Picasso.get().load(imageUrl).resize(100, 100).centerCrop().into(itemView.item_image);
+            Picasso.get().load(imageUrl).resize(100, 100).centerCrop().into(itemView.item_image)
             itemView.tv_name_please.text = shortLotBeans.name
             itemView.tv_id.text = "№ ${shortLotBeans.lot_number}"
-            itemView.tv_coast.text = "Zaklad pulini miqdori\n${shortLotBeans.zaklad_summa}"
-            itemView.tv_coast_starter.text = "Boshlang'ich narxi\n${shortLotBeans.start_price} UZS"
-
+            val sp = shortLotBeans.start_price.let { it2 ->
+                if (it2 == null) return@let "0.0"
+                Math.round(it2).toInt().toString()
+            }
+            itemView.tv_coast_starter.text = "Boshlang'ich narxi\n${sp}UZS"
+            val zs = shortLotBeans.zaklad_summa.let {
+                if (it == null) return@let "0.0"
+                Math.round(it).toInt().toString()
+            }
+            itemView.tv_coast.text = "Zaklad pulini miqdori\n${zs}"
             itemView.setOnClickListener {
                 listener.itemClicked(shortLotBeans)
             }
         }
 
         private fun getImageUrl(fileHash: String): String =
-            "https://files.e-auksion.uz/files-worker/api/v1/images?file_hash=" + fileHash + "&from_mobile=1"
-
-
+            "https://files.e-auksion.uz/files-worker/api/v1/images?file_hash=$fileHash&from_mobile=1"
     }
 }

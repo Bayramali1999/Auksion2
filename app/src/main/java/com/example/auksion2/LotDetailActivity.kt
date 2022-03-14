@@ -17,6 +17,7 @@ import com.example.auksion2.viewmodel.SharedViewModel
 import kotlinx.android.synthetic.main.activity_lot_detail.*
 import java.text.SimpleDateFormat
 
+
 class LotDetailActivity : AppCompatActivity() {
 
     private var expandable = true
@@ -43,12 +44,20 @@ class LotDetailActivity : AppCompatActivity() {
             vm.loadLotDetail(reqData)
             vm.getLotDetailByLiveData.observe(this) {
                 if (it != null) {
-                    val lotbean1 = it.lotBean
-                    setImagesToSlider(lotbean1!!.confiscantImagesList!!)
+                    val lotbean1 = it.lotBean ?: return@observe
+                    setImagesToSlider(lotbean1.confiscantImagesList!!)
                     tv_lot_please.text = lotbean1.name
                     tv_lot_id.text = "№ ${lotbean1.lot_number}"
-                    tv_lot_coast.text = lotbean1.zaklad_summa.toString()
-                    tv_lot_coast_starter.text = lotbean1.start_price.toString()
+                    val zp = lotbean1.zaklad_summa.let { it1 ->
+                        if (it1 == null) return@let "0.0UZS"
+                        Math.round(it1).toInt().toString() + "UZS"
+                    }
+                    tv_lot_coast.text = zp
+                    val sp = lotbean1.start_price.let { it2 ->
+                        if (it2 == null) return@let "0.0UZS"
+                        Math.round(it2).toInt().toString() + "UZS"
+                    }
+                    tv_lot_coast_starter.text = sp
                     auksion_favorit.text = lotbean1.count_favourite.toString()
                     auksion_eye.text = lotbean1.view_count.toString()
                     auksion_item_name.text = lotbean1.area_name
@@ -57,10 +66,10 @@ class LotDetailActivity : AppCompatActivity() {
                     val endTime: String = lotbean1.end_time!!.split(" ")[1]
                     time_auksion_sasda.text = "Auksion ${lotbean1.start_time} kuni $endTime"
                     setDataTimerView(lotbean1.order_end_time!!)
-                    val MolMul = lotbean1.joylashgan_manzil!!.split(", ")
-                    tv_mol_mul_vil.text = MolMul[0]
-                    tv_mol_mul_tuman.text = MolMul[1]
-                    tv_mol_mul_manzil.text = MolMul[2]
+                    val molMul = lotbean1.joylashgan_manzil!!.split(", ")
+                    tv_mol_mul_vil.text = molMul[0]
+                    tv_mol_mul_tuman.text = molMul[1]
+                    tv_mol_mul_manzil.text = molMul[2]
 
                     tv_mol_mul_1kun.text = lotbean1.f_visit_time1
                     tv_mol_mul_2kun.text = lotbean1.f_visit_time2
@@ -100,48 +109,47 @@ class LotDetailActivity : AppCompatActivity() {
             }
         }
     }
-
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @Suppress("DEPRECATION")
     private fun checkViewExpandable(i: Int) {
-        mol_mul_item1.background = getDrawable(R.drawable.btn_background)
+        mol_mul_item1.setBackgroundResource(R.drawable.btn_background)
         mol_mul_item1.setTextColor(resources.getColor(R.color.black))
         molmulk_hidden.visibility = View.GONE
 
-        ikro_item_1.background = getDrawable(R.drawable.btn_background)
+        ikro_item_1.setBackgroundResource(R.drawable.btn_background)
         ikro_item_1.setTextColor(resources.getColor(R.color.black))
         ijro_hidden.visibility = View.GONE
 
-        sotuvchi_item1.background = getDrawable(R.drawable.btn_background)
+        sotuvchi_item1.setBackgroundResource(R.drawable.btn_background)
         sotuvchi_item1.setTextColor(resources.getColor(R.color.black))
         sotuvchi_hidden.visibility = View.GONE
 
-        lot_malumotlari_item_1.background = getDrawable(R.drawable.btn_background)
-        lot_malumotlari_item_1.setTextColor(resources.getColor(R.color.black))
+        lot_malumotlari_item_1.setBackgroundResource(R.drawable.btn_background)
+        lot_malumotlari_item_1.setTextColor(
+            resources.getColor(R.color.black)
+        )
         lot_malumotlari_hidden.visibility = View.GONE
 
         if (expandable) {
             when (i) {
                 1 -> {
-                    mol_mul_item1.background = getDrawable(R.drawable.selected_background)
+                    mol_mul_item1.setBackgroundResource(R.drawable.selected_background)
                     mol_mul_item1.setTextColor(resources.getColor(R.color.white))
                     molmulk_hidden.visibility = View.VISIBLE
 
                 }
                 2 -> {
-                    ikro_item_1.background = getDrawable(R.drawable.selected_background)
+                    ikro_item_1.setBackgroundResource(R.drawable.selected_background)
                     ikro_item_1.setTextColor(resources.getColor(R.color.white))
                     ijro_hidden.visibility = View.VISIBLE
 
                 }
                 3 -> {
-                    sotuvchi_item1.background = getDrawable(R.drawable.selected_background)
+                    sotuvchi_item1.setBackgroundResource(R.drawable.selected_background)
                     sotuvchi_item1.setTextColor(resources.getColor(R.color.white))
                     sotuvchi_hidden.visibility = View.VISIBLE
-
                 }
                 4 -> {
-
-                    lot_malumotlari_item_1.background = getDrawable(R.drawable.selected_background)
+                    lot_malumotlari_item_1.setBackgroundResource(R.drawable.selected_background)
                     lot_malumotlari_item_1.setTextColor(resources.getColor(R.color.white))
                     lot_malumotlari_hidden.visibility = View.VISIBLE
                 }

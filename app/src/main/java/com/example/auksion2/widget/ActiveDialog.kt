@@ -10,20 +10,20 @@ import com.example.auksion2.listener.OnDialogItemSelected
 class ActiveDialog : androidx.fragment.app.DialogFragment() {
 
     private lateinit var title: String
-    private lateinit var selectionArray: Array<String?>
+    private lateinit var selectionArray: Array<String>
     private lateinit var listener: OnDialogItemSelected
-    private var ids: Int = -1
-    private var checkedItem: Int = -1
+    private var ids: Int = 0
+    private var checkedItem: Int = 0
 
     fun getData(
         title: String,
-        list: Array<String?>,
+        list: Array<String>,
         listener: OnDialogItemSelected
     ) {
         this.title = title
         selectionArray = list
         this.listener = listener
-        this.checkedItem = checkedItem
+//        this.checkedItem = checkedItem
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -32,15 +32,15 @@ class ActiveDialog : androidx.fragment.app.DialogFragment() {
             val dialog = AlertDialog.Builder(activity, R.style.MyAlertDialogStyle)
 
             dialog.setTitle(title)
-                .setSingleChoiceItems(selectionArray, 0) { di, item ->
+                .setSingleChoiceItems(selectionArray, checkedItem) { _, item ->
                     this.ids = item
-                    this.listener.itemSelected(item)
                 }
                 .setPositiveButton("Ok") { di, _ ->
-                    Toast.makeText(getActivity(), "item$ids", Toast.LENGTH_LONG).show()
+                    this.listener.itemSelected(ids)
+                    ids = checkedItem
                     di.dismiss()
                 }
-                .setNegativeButton("Bekor qilish") { di, id ->
+                .setNegativeButton("Bekor qilish") { di, _ ->
                     di.dismiss()
                 }
 

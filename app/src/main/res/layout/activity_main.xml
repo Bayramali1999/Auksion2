@@ -49,11 +49,15 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/item_view" />
 
         <ProgressBar
