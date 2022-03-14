@@ -1,7 +1,7 @@
 package com.example.auksion2.data.lot
 
 
-data class LotBean__1(
+data class LotBeans(
      val id: Int? = null,
      val name: String? = null,
      val start_time: String? = null,
